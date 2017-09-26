@@ -24,7 +24,7 @@ Wrap CSS and JS files with:
 
 ```
 <!-- build:<type> <path> -->
-... HTML Markup, list of script / link tags.
+...list of script / link tags.
 <!-- endbuild -->
 ```
 
