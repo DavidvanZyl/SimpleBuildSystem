@@ -18,8 +18,15 @@ Download or clone, then:
 ```
 npm install
 ```
+### Usage
 
-End with an example of getting some data out of the system or using it for a little demo
+Wrap CSS and JS files with:
+
+```
+<!-- build:<type> <path> -->
+... HTML Markup, list of script / link tags.
+<!-- endbuild -->
+```
 
 ## Built With
 
