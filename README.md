@@ -28,7 +28,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Authors
 
-* **David van Zyl** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **David van Zyl** - [Github](https://github.com/DavidvanZyl)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
