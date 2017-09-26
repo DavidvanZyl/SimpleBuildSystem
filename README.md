@@ -4,6 +4,8 @@ A basic set of front end build tools brought together.
 I didn't like any of the generators or build systems that I could find around, so I made my own.
 Its mostly here for my personal use but if you want to use it, you are more than welcome.
 
+Includes Sass, BrowserSync and useref so far.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
