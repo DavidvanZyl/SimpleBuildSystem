@@ -1,7 +1,17 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync').create();
-var useref = require('gulp-useref');
+const` gulp = require('gulp');
+const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
+const useref = require('gulp-useref');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+
+gulp.task('babel', () =>
+    gulp.src('src/js/**/*.js')
+        .pipe(babel({
+            presets: ['env']
+        }))
+        .pipe(gulp.dest('dist'))
+);
 
 gulp.task('sass', function(){
   return gulp.src('app/scss/**/*.scss')
@@ -20,14 +30,8 @@ gulp.task('browserSync', function(){
   })
 });
 
-gulp.task('serve', ['browserSync', 'sass'], function(){
+gulp.task('serve', ['browserSync', 'sass', 'babel'], function(){
   gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/js/**/*.js', browserSync.reload);
-});
-
-gulp.task('useref', function(){
-  return gulp.src('app/*.html')
-    .pipe(useref())
-    .pipe(gulp.dest('dist'))
+  gulp.watch('app/js/**/*.js', [browserSync.reload, 'babel']);
 });

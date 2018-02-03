@@ -1,7 +1,7 @@
 # SimpleSystem
 
 I didn't like any of the generators or build systems that I could find around, so I made my own.
-Its mostly here for my personal use but if you want to use it, you are more than welcome.
+Its mostly here for my personal use but if you want to use it, you are more than welcome. It's fairly easy to customise, just change the paths in the gulpfile to match your directory structure.
 
 ## Getting Started
 
@@ -18,7 +18,11 @@ Download or clone, then:
 npm install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Then to run your dev server
+
+```
+gulp server
+```
 
 ## Built With
 
@@ -35,16 +39,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **David van Zyl** 
