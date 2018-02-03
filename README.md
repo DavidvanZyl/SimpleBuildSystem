@@ -1,10 +1,9 @@
 # SimpleSystem
-A basic set of front end build tools brought together.
 
 I didn't like any of the generators or build systems that I could find around, so I made my own.
-Its mostly here for my personal use but if you want to use it, you are more than welcome.
+Its mostly here for my personal use but if you want to use it, you are more than welcome. It's fairly easy to customise, just change the paths in the gulpfile to match your directory structure.
 
-Includes Sass, BrowserSync and useref so far.
+Includes babel, sass/scss, and browserSync with Gulp.
 
 ## Getting Started
 
@@ -20,14 +19,11 @@ Download or clone, then:
 ```
 npm install
 ```
-### Usage
 
-Wrap CSS and JS files with:
+Then to run your dev server
 
 ```
-<!-- build:<type> <path> -->
-...list of script / link tags.
-<!-- endbuild -->
+gulp server
 ```
 
 ## Built With
@@ -42,4 +38,3 @@ Wrap CSS and JS files with:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
