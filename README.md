@@ -23,7 +23,7 @@ npm install
 Then to run your dev server
 
 ```
-gulp server
+gulp serve
 ```
 
 ## Built With
