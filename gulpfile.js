@@ -12,6 +12,8 @@ const size = require( 'gulp-size');
 const sourcemaps = require( 'gulp-sourcemaps');
 const uglify = require( 'gulp-uglify');
 const del = require('del');
+const pngquant = require('pngquant');
+var gutil = require('gulp-util');
 
 //SET THE BASE DIRECTORY
 const basedir = 'app';
@@ -29,7 +31,7 @@ const plumberErrorNotify = {
 };
 
 
-gulp.task('clean', () => del(['dist']));
+gulp.task('clean', () => del(['static']));
 
 gulp.task('babel', () => {
 	return gulp.src([
@@ -42,14 +44,15 @@ gulp.task('babel', () => {
 		.pipe(concat('main.js')) /*build single file*/
 		.pipe(uglify({
 			mangle: false,
-			compress: false,
-			output: { beautify: true }
+			compress: true,
+			output: { beautify: false }
 		}))
+    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
 		.pipe(sourcemaps.write())
 		.pipe(size({
 			"title": "Scripts size of"
 		}))
-		.pipe(gulp.dest('app/dist/js'))
+		.pipe(gulp.dest('app/static/js'))
 		.pipe(notify({
 			"title": "JS",
 			"message": "scripts compiled!",
@@ -66,10 +69,10 @@ gulp.task('sass', () => {
 		basedir+'/scss/**/*.scss'
 	])
 		.pipe(plumber(plumberErrorNotify))
-		.pipe(changed(basedir'/dist/css'))
+		.pipe(changed(basedir+'/static/css'))
 		.pipe(sourcemaps.init())
 		.pipe(sass({
-			outputStyle: 'expanded'
+			outputStyle: 'compressed'
 		}))
 		.pipe(prefix({
 			browsers: ['ie 8', 'opera 12', 'ff 15', 'chrome 25', 'last 2 version']
@@ -79,7 +82,7 @@ gulp.task('sass', () => {
 		.pipe(size({
 			"title": "Styles size of"
 		}))
-		.pipe(gulp.dest(basedir+'/dist/css'))
+		.pipe(gulp.dest(basedir+'/static/css'))
 		.pipe(notify({
 			"title": "Styles",
 			"message": "css compiled!!",
@@ -92,7 +95,7 @@ gulp.task('sass', () => {
 
 gulp.task('images', () => {
 	return gulp.src([
-		basedir+'/assets/**/*'
+		basedir+'/img/**/*'
 	])
 		.pipe(plumber(plumberErrorNotify))
     .pipe(imagemin([
@@ -108,13 +111,13 @@ gulp.task('images', () => {
         ]
       })
     ]))
-		.pipe(gulp.dest(basedir+'/dist/assets'))
+		.pipe(gulp.dest(basedir+'/static/img'))
 		.pipe(notify({
 			"title": "Images",
 			"message": "images compiled!",
 			"onLast": true
 		}))
-		.pipe(reload({
+		.pipe(browserSync.reload({
 			stream: true
 		}))
 });
@@ -122,6 +125,6 @@ gulp.task('images', () => {
 gulp.task('serve', ['clean', 'sass', 'babel', 'images', 'browserSync'], function(){
   gulp.watch(basedir+'/scss/**/*.scss', ['sass']);
   gulp.watch(basedir+'/*.html', browserSync.reload);
-  gulp.watch(basedir+'/assets', browserSync.reload);
+  gulp.watch(basedir+'/img', browserSync.reload);
   gulp.watch(basedir+'/js/**/*.js', [browserSync.reload, 'babel']);
 });
